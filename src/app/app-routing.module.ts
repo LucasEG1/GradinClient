@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TeachersPlistComponent } from './component/routed/teachers-plist/teachers-plist.component';
+import { TeachersPlistComponent } from './component/routed/teacher/teachers-plist/teachers-plist.component';
+import { HomeComponent } from './component/routed/home/home.component';
 
 const routes: Routes = [
-  {path: 'teachers', component: TeachersPlistComponent},
+  { path: '', component: HomeComponent },
+  { path: 'teachers', component: TeachersPlistComponent },
 ];
 
 @NgModule({
