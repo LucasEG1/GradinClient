@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { TeachersPlistComponent } from './component/routed/teachers-plist/teachers-plist.component';
 
 const routes: Routes = [
-  {path: '/', component: }
   {path: 'teachers', component: TeachersPlistComponent},
 ];
 
