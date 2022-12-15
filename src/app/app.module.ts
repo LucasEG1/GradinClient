@@ -5,13 +5,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/unrouted/navbar/navbar.component';
-import { TeachersPlistComponent } from './component/routed/teacher/teachers-plist/teachers-plist.component';
+import { ProfesoresPlistComponent } from './component/routed/profesor/profesores-plist/profesores-plist.component';
 import { HomeComponent } from './component/routed/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    TeachersPlistComponent,
+    ProfesoresPlistComponent,
     HomeComponent
   ],
   imports: [
