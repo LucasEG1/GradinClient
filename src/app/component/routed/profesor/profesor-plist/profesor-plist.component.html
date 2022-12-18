@@ -1,0 +1,48 @@
+<div class="container mt-3">
+  <div class="display-2 text-center mb-3">Listado de profesores</div>
+  <div class="col-md text-end d-flex mb-3 ">
+    <!-- Paginación -->
+    <div class="col-md">
+      <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+        (eePage)="setPage($event)"></app-pagination-unrouted>
+    </div>
+    <!-- Búsqueda y selector RPP -->
+    <app-search-unrouted [placeHolder]="'Buscar profesor'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+    <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.numberOfElements"
+      (eeRpp)="this.setRpp($event)">
+    </app-dropdown-register-page>
+  </div>
+  <table class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Primer apellido</th>
+        <th scope="col">Segundo apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profesor of responseFromServer.content">
+        <td>{{profesor.id}}</td>
+        <td>{{profesor.dni}}</td>
+        <td>{{profesor.nombre}}</td>
+        <td>{{profesor.apellido1}}</td>
+        <td>{{profesor.apellido2}}</td>
+        <td>{{profesor.email}}</td>
+        <td>
+          <div class="btn-group">
+            <a class="btn btn-primary" [routerLink]="['/profesor', profesor.id]">Ver</a>
+            <a class="btn btn-success" [routerLink]="['/profesor', profesor.id, 'edit']">Editar</a>
+            <a class="btn btn-danger" [routerLink]="['/profesor', profesor.id, 'remove']">Eliminar</a>
+          </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="botonera-inferior d-flex justify-content-center">
+    <a [routerLink]="['/admin/profesor/new']" class="btn btn-primary mx-3">Alta de profesor</a>
+  </div>
+
+</div>

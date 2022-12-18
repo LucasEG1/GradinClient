@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfesoresPlistComponent } from './profesores-plist.component';
+import { ProfesoresPlistComponent } from './profesor-plist.component';
 
 describe('ProfesoresPlistComponent', () => {
   let component: ProfesoresPlistComponent;

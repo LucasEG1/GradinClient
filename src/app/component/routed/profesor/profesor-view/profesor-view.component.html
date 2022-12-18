@@ -1,0 +1,9 @@
+<div class="container mt-3">
+    <div class="display-2 text-center mb-3">Vista de un profesor</div>
+    <app-profesor-detail [id]="id"></app-profesor-detail>
+    <div class="btn-group botonera d-flex justfiy-content-center">
+        <a class="btn btn-primary" [routerLink]="['/profesores']">Volver</a>
+        <a class="btn btn-success" [routerLink]="['/profesor', id, 'edit']">Editar</a>
+        <a class="btn btn-danger" [routerLink]="['/profesor', id, 'remove']">Eliminar</a>
+    </div>
+</div>
