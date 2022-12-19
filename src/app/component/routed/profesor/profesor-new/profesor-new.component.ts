@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IProfesor, IProfesor2Form } from 'src/app/model/profesor-interface';
+import { IProfesor2Form, IProfesor2Send } from 'src/app/model/profesor-interface';
 import { ProfesorService } from 'src/app/service/profesor.service';
 
 let bootstrap = require("bootstrap");
@@ -14,7 +14,7 @@ let bootstrap = require("bootstrap");
 export class ProfesorNewComponent implements OnInit {
 
   id: number = 0;
-  oProfesor: IProfesor;
+  oProfesor: IProfesor2Send;
   oProfesor2Form: IProfesor2Form;
   oForm: FormGroup<IProfesor2Form>;
   // validaciones de longitud
@@ -34,7 +34,7 @@ export class ProfesorNewComponent implements OnInit {
     private oProfesorService: ProfesorService,
     private oFormBuilder: FormBuilder
   ) {
-    this.oProfesor = {} as IProfesor;
+    this.oProfesor = {} as IProfesor2Send;
     this.oProfesor2Form = {} as IProfesor2Form;
     this.oForm = {} as FormGroup<IProfesor2Form>;
   }
@@ -51,9 +51,15 @@ export class ProfesorNewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onSubmit");
+    this.oProfesor = {
+      dni: this.oForm.value.dni || "00000000A",
+      nombre: this.oForm.value.nombre || "nombre",
+      apellido1: this.oForm.value.apellido1 || "apellido1",
+      apellido2: this.oForm.value.apellido2  || "Apellido2",
+      email: this.oForm.value.email || "email"
+    }
     if (this.oForm.valid) {
-      this.oProfesorService.create(this.oProfesor2Form).subscribe({
+      this.oProfesorService.create(this.oProfesor).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
           this.modalTitle = "- Gradin -";

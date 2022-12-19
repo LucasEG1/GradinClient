@@ -17,3 +17,10 @@ export interface IProfesor2Form {
     apellido2:  FormControl<string>;
     email:      FormControl<string>;
 }
+export interface IProfesor2Send {
+    dni:        string;
+    nombre:     string;
+    apellido1:  string;
+    apellido2:  string;
+    email:      string;
+}
