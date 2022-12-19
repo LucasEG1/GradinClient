@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IPage } from '../model/generic-types-interface';
-import { IProfesor } from '../model/profesor-interface';
+import { IProfesor, IProfesor2Form } from '../model/profesor-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class ProfesorService {
 
   constructor(private oHttpClient: HttpClient) {
     this.url = `${environment.baseURL}${this.entityURL}`;
+  }
+
+  create(oProfesor: IProfesor2Form): Observable<number> {
+    return this.oHttpClient.post<number>(this.url, oProfesor);
   }
 
   listarProfesores(page: number, size: number, termino: string, strSortField: string, strOrderDirection: string): Observable<IPage<IProfesor>> {

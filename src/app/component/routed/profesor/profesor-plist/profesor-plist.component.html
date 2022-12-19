@@ -34,7 +34,7 @@
         <td>{{profesor.email}}</td>
         <td>
           <div class="btn-group">
-            <a class="btn btn-primary" [routerLink]="['/profesor', profesor.id]">Ver</a>
+            <a class="btn btn-primary" [routerLink]="['/profesor', profesor.id, 'view']">Ver</a>
             <a class="btn btn-success" [routerLink]="['/profesor', profesor.id, 'edit']">Editar</a>
             <a class="btn btn-danger" [routerLink]="['/profesor', profesor.id, 'remove']">Eliminar</a>
           </div>
@@ -42,7 +42,7 @@
     </tbody>
   </table>
   <div class="botonera-inferior d-flex justify-content-center">
-    <a [routerLink]="['/admin/profesor/new']" class="btn btn-primary mx-3">Alta de profesor</a>
+    <a [routerLink]="['/profesor', 'new']" class="btn btn-primary mx-3">Alta de profesor</a>
   </div>
 
 </div>

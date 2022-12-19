@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,9 +13,9 @@ import { SearchUnroutedComponent } from './component/unrouted/search-unrouted/se
 //
 import { ProfesoresPlistComponent } from './component/routed/profesor/profesor-plist/profesor-plist.component';
 import { ProfesorDetailComponent } from './component/unrouted/component-detail/profesor-detail/profesor-detail.component';
+import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/profesor-new.component';
 import { ProfesorViewComponent } from './component/routed/profesor/profesor-view/profesor-view.component';
 import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-remove/profesor-remove.component';
-import { ProfesorCreateComponent } from './component/routed/profesor/profesor-create/profesor-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,14 +26,15 @@ import { ProfesorCreateComponent } from './component/routed/profesor/profesor-cr
     SearchUnroutedComponent,
     ProfesoresPlistComponent,
     ProfesorDetailComponent,
+    ProfesorNewComponent,
     ProfesorViewComponent,
     ProfesorRemoveComponent,
-    ProfesorCreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule
   ],
