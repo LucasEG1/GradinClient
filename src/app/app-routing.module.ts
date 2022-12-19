@@ -5,6 +5,7 @@ import { ProfesoresPlistComponent } from './component/routed/profesor/profesor-p
 import { ProfesorViewComponent } from './component/routed/profesor/profesor-view/profesor-view.component';
 import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-remove/profesor-remove.component';
 import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/profesor-new.component';
+import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'profesor/new', component: ProfesorNewComponent },
   { path: 'profesor/:id/view', component: ProfesorViewComponent },
   { path: 'profesor/:id/remove', component: ProfesorRemoveComponent },
+  { path: 'profesor/:id/edit', component: ProfesorEditComponent },
 ];
 
 @NgModule({

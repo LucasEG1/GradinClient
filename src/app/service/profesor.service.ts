@@ -21,6 +21,10 @@ export class ProfesorService {
     return this.oHttpClient.post<number>(this.url, oProfesor);
   }
 
+  update(oProfesor: IProfesor2Send): Observable<number> {
+    return this.oHttpClient.put<number>(this.url, oProfesor);
+  }
+
   listarProfesores(page: number, size: number, termino: string, strSortField: string, strOrderDirection: string): Observable<IPage<IProfesor>> {
     let params = new HttpParams()
       .set("filter", termino)

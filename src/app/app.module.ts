@@ -16,6 +16,7 @@ import { ProfesorDetailComponent } from './component/unrouted/component-detail/p
 import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/profesor-new.component';
 import { ProfesorViewComponent } from './component/routed/profesor/profesor-view/profesor-view.component';
 import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-remove/profesor-remove.component';
+import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-re
     ProfesorNewComponent,
     ProfesorViewComponent,
     ProfesorRemoveComponent,
+    ProfesorEditComponent,
   ],
   imports: [
     BrowserModule,
