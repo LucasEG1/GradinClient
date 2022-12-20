@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProfesor, IProfesor2Form, IProfesor2Send } from 'src/app/model/profesor-interface';
 import { ProfesorService } from 'src/app/service/profesor.service';
 
+let bootstrap = require("bootstrap");
+
 @Component({
   selector: 'app-profesor-edit',
   templateUrl: './profesor-edit.component.html',
@@ -13,9 +15,9 @@ import { ProfesorService } from 'src/app/service/profesor.service';
 export class ProfesorEditComponent implements OnInit {
 
   id: number = 0;
-  oProfesor: IProfesor2Send;
+  oProfesor: IProfesor;
   oProfesor2Form: IProfesor2Form;
-  oProfesor2Send: IProfesor2Send;
+  oProfesor2Send: IProfesor;
   oForm: FormGroup<IProfesor2Form>;
   // validaciones de longitud
   lengthDni: number = 9;
@@ -24,10 +26,7 @@ export class ProfesorEditComponent implements OnInit {
   minLengthApellido: number = 2;
   maxLengthApellido: number = 20;
   // modal
-  idModal: string = "idModal";
-  myModal: any;
-  modalTitle: string = "";
-  modalContent: string = "";
+  idModal: string = "modalAvisoActualizacion";
 
   
   constructor(
@@ -40,7 +39,7 @@ export class ProfesorEditComponent implements OnInit {
     this.id = oActivatedRoute.snapshot.params['id'];
     this.oProfesor = {} as IProfesor;
     this.oProfesor2Form = {} as IProfesor2Form;
-    this.oProfesor2Send = {} as IProfesor2Send;
+    this.oProfesor2Send = {} as IProfesor;
     this.oForm = {} as FormGroup<IProfesor2Form>;
   }
 
@@ -66,15 +65,29 @@ export class ProfesorEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onSubmit");
-    this.oProfesor2Form = {
-      id: new FormControl(this.oForm.value.id) as FormControl<number>,
-      dni: new FormControl(this.oProfesor.dni) as FormControl<string>,
-      nombre: new FormControl(this.oForm.value.nombre) as FormControl<string>,
-      apellido1: new FormControl(this.oForm.value.apellido1) as FormControl<string>,
-      apellido2: new FormControl(this.oProfesor.apellido2) as FormControl<string>,
-      email: new FormControl(this.oForm.value.email) as FormControl<string>
+    this.oProfesor2Send = {
+      id: this.oForm.value.id as number,
+      dni: this.oForm.value.dni as string,
+      nombre: this.oForm.value.nombre as string,
+      apellido1: this.oForm.value.apellido1 as string,
+      apellido2: this.oForm.value.apellido2 as string,
+      email: this.oForm.value.email as string
     }
+    if (this.oForm.valid) {
+      this.oProfesorService.update(this.oProfesor2Send).subscribe({
+        next: (data: number) => {
+          this.showModal(this.id);
+        }
+      })
+    }
+  }
+
+  showModal(data: number): void {
+    const modalAviso = new bootstrap.Modal(document.getElementById(this.idModal), { 
+      keyboard: false
+    });
+    modalAviso.show();
+    this.oRouter.navigate(['/profesor', data, 'view'])
   }
 
   cancelar() {

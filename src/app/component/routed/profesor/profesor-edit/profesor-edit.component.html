@@ -6,6 +6,13 @@
             <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
 
                 <div class="mb-3 row">
+                    <label for="inputId" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="inputId" formControlName="id" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
                     <label for="inputDni" class="col-sm-2 col-form-label">DNI (NIF) / NIE</label>
                     <div class="col-sm-4 has-validation">
                         <input type="text" class="form-control" [ngClass]="
@@ -129,6 +136,23 @@
                     Guardar
                 </button>
                 <button type="button" class="btn btn-danger m-2" (click)="cancelar()">Cancelar</button>
+
+                <div class="modal fade" id="modalAvisoActualizacion" tabindex="-1" aria-labelledby="modalAvisoActualizacionLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalAvisoActualizacionLabel">- Gradin -</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">Profesor editado con éxito. Cierre este aviso para ver los detalles.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entendido.</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

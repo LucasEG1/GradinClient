@@ -21,7 +21,7 @@ export class ProfesorService {
     return this.oHttpClient.post<number>(this.url, oProfesor);
   }
 
-  update(oProfesor: IProfesor2Send): Observable<number> {
+  update(oProfesor: IProfesor): Observable<number> {
     return this.oHttpClient.put<number>(this.url, oProfesor);
   }
 

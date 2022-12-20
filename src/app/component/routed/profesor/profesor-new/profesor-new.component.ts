@@ -24,10 +24,7 @@ export class ProfesorNewComponent implements OnInit {
   minLengthApellido: number = 2;
   maxLengthApellido: number = 20;
   // modal
-  idModal: string = "idModal";
-  myModal: any;
-  modalTitle: string = "";
-  modalContent: string = "";
+  idModal: string = "modalAvisoCreacion";
 
   constructor(
     private oRouter: Router,
@@ -38,7 +35,7 @@ export class ProfesorNewComponent implements OnInit {
     this.oProfesor2Form = {} as IProfesor2Form;
     this.oForm = {} as FormGroup<IProfesor2Form>;
   }
-  
+
   ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
@@ -46,39 +43,33 @@ export class ProfesorNewComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(this.minLengthNombre), Validators.maxLength(this.maxLengthNombre)]],
       apellido1: ['', [Validators.required, Validators.minLength(this.minLengthApellido), Validators.maxLength(this.maxLengthApellido)]],
       apellido2: ['', [Validators.minLength(this.minLengthApellido), Validators.maxLength(this.maxLengthApellido)]],
-      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]      
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]
     });
   }
 
   onSubmit() {
     this.oProfesor = {
-      dni: this.oForm.value.dni || "00000000A",
-      nombre: this.oForm.value.nombre || "nombre",
-      apellido1: this.oForm.value.apellido1 || "apellido1",
-      apellido2: this.oForm.value.apellido2  || "Apellido2",
-      email: this.oForm.value.email || "email"
+      dni: this.oForm.value.dni as string,
+      nombre: this.oForm.value.nombre as string,
+      apellido1: this.oForm.value.apellido1 as string,
+      apellido2: this.oForm.value.apellido2 as string,
+      email: this.oForm.value.email as string
     }
     if (this.oForm.valid) {
       this.oProfesorService.create(this.oProfesor).subscribe({
         next: (data: number) => {
-          //open bootstrap modal here
-          this.modalTitle = "- Gradin -";
-          this.modalContent = "Profesor " + data + " creado con éxito";
-          //this.showModal(data);
+          this.showModal(data);
         }
       })
     }
   }
 
-  /*showModal = (data) => {
-    this.myModal = new bootstrap.Modal(document.getElementById(this.idModal), { //pasar el myModal como parametro
+  showModal(data: number): void {
+    const modalAvisoCreacion = new bootstrap.Modal(document.getElementById(this.idModal), { //pasar el myModal como parametro
       keyboard: false
-    })
-    const myModalEl = document.getElementById(this.idModal);
-    myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      this.oRouter.navigate(['/admin/developer/view', data])
-    })
-    this.myModal.show()
-  }*/
+    });
+    modalAvisoCreacion.show();
+    this.oRouter.navigate(['/profesor', data, 'view'])
+  }
 
 }
