@@ -17,6 +17,12 @@ import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/p
 import { ProfesorViewComponent } from './component/routed/profesor/profesor-view/profesor-view.component';
 import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-remove/profesor-remove.component';
 import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
+//
+import { LoginComponent } from './component/routed/session/login/login.component';
+import { LogoutComponent } from './component/routed/session/logout/logout.component';
+import { CryptoService } from './service/crypto.service';
+import { PaginationService } from './service/pagination.service';
+import { DecodeService } from './service/decode.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +37,8 @@ import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit
     ProfesorViewComponent,
     ProfesorRemoveComponent,
     ProfesorEditComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,11 @@ import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit
     FormsModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    CryptoService,
+    DecodeService,
+    PaginationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

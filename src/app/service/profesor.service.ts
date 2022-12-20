@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IPage } from '../model/generic-types-interface';
-import { IProfesor, IProfesor2Send } from '../model/profesor-interface';
+import { IProfesor, IProfesor2Send, IProfesorBean } from '../model/profesor-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class ProfesorService {
 
   constructor(private oHttpClient: HttpClient) {
     this.url = `${environment.baseURL}${this.entityURL}`;
+  }
+
+  login(profesorBean: IProfesorBean): Observable<IProfesor> {
+    return this.oHttpClient.post<IProfesor>(this.url + "/login", profesorBean);
   }
 
   create(oProfesor: IProfesor2Send): Observable<number> {

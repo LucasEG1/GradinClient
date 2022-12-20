@@ -8,7 +8,6 @@ export interface IProfesor {
     apellido2:  string;
     email:      string;
 }
-
 export interface IProfesor2Form {
     id:         FormControl<number>;
     dni:        FormControl<string>;
@@ -23,4 +22,12 @@ export interface IProfesor2Send {
     apellido1:  string;
     apellido2:  string;
     email:      string;
+}
+export interface IProfesorBeanForm {
+    dni :   FormControl<string>;
+    pass :  FormControl<string>;
+}
+export interface IProfesorBean {
+    dni :   string;
+    pass :  string;
 }

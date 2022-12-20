@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Inicio de sesión</h1>
+
+            <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3 row">
+                    <label for="inputDni" class="col-sm-2 col-form-label">DNI (NIF) / NIE</label>
+                    <div class="col-sm-4 has-validation">
+                        <input type="text" class="form-control" [ngClass]="
+                        {'is-valid':    loginForm.controls.dni.dirty && !loginForm.controls.dni.errors?.['required'] &&
+                                        loginForm.controls.dni.dirty && !loginForm.controls.dni.errors?.['pattern'] &&
+                                        loginForm.controls.dni.dirty && !loginForm.controls.dni.errors?.['minlength'] &&
+                                        loginForm.controls.dni.dirty && !loginForm.controls.dni.errors?.['maxlength'],
+                        'is-invalid' :  loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['required'] ||
+                                        loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['pattern'] ||
+                                        loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['minlength'] ||
+                                        loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['maxlength']}"
+                            id="inputDni" formControlName="dni">
+                        <div id="inputDniFeedback" class="invalid-feedback"
+                            *ngIf="loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['minlength']">
+                            La longitud mínima es de {{lengthDni}} caracteres.
+                        </div>
+                        <div id="inputDniFeedback" class="invalid-feedback"
+                            *ngIf="loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['maxlength']">
+                            La longitud máxima es de {{lengthDni}} caracteres.
+                        </div>
+                        <div id="inputDniFeedback" class="invalid-feedback"
+                            *ngIf="loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['required']">
+                            El campo es obligatorio.
+                        </div>
+                        <div id="inputDniFeedback" class="invalid-feedback"
+                            *ngIf="loginForm.controls.dni.dirty &&  loginForm.controls.dni.errors?.['pattern']">
+                            El formato no es adecuado
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" id="password" formControlName="pass">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="(!loginForm.dirty)">
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
