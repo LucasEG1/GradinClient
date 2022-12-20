@@ -6,15 +6,15 @@ import { HttpHeaders } from "@angular/common/http";
 
 export const environment = {
   production: false,
-  baseURL: "http://localhost:8082",
-  httpOptions: {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json; charset=UTF-8'
-    }),
-    withCredentials: true
-  }
 };
+export const baseURL: string = "http://localhost:8082";
 
+export const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json; charset=UTF-8'
+  }),
+  withCredentials: true
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

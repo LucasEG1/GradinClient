@@ -4,7 +4,7 @@
             <h1 class="text-center mb-5">Inicio de sesión</h1>
 
             <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="mb-3 row">
+                <div class="mb-3 row d-flex align-content-center justify-content-center">
                     <label for="inputDni" class="col-sm-2 col-form-label">DNI (NIF) / NIE</label>
                     <div class="col-sm-4 has-validation">
                         <input type="text" class="form-control" [ngClass]="
@@ -35,18 +35,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <div class="form-group">
-                        <label for="password" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" id="password" formControlName="pass">
-                        </div>
+                <div class="mb-3 row d-flex align-content-center justify-content-center">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="password" formControlName="pass">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary"
-                    [disabled]="(!loginForm.dirty)">
-                    Guardar
-                </button>
+                <div class="mb-3 row d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="(!loginForm.dirty)">
+                        Guardar
+                    </button>
+                </div>
             </form>
         </div>
     </div>

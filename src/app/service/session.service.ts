@@ -4,6 +4,7 @@ import { filter, map, Observable, Subscription, Subject } from 'rxjs';
 import { CryptoService } from './crypto.service';
 import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
+import { IProfesor, IProfesorBean } from '../model/profesor-interface';
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +12,8 @@ import { baseURL, httpOptions } from 'src/environments/environment';
 
 export class SessionService {
 
-    private entityURL = '/session';
-    sURL: string = `${baseURL}${this.entityURL}`;
+    private entityURL = '/sesion';
+    url: string = `${baseURL}${this.entityURL}`;
     subject = new Subject<any>();
 
     constructor(
@@ -21,28 +22,27 @@ export class SessionService {
         private oDecodeService: DecodeService
     ) { }
 
-    login(strLogin: string, strPassword: string): Observable<string> {
-        const loginData = JSON.stringify({ username: strLogin, password: this.oCryptoService.getSHA256(strPassword) });
-        return this.oHttpClient.post<string>(this.sURL, loginData, httpOptions);
+    login(profesorBean: IProfesorBean): Observable<IProfesor> {
+        return this.oHttpClient.post<IProfesor>(this.url + "/login", profesorBean, httpOptions);
     }
 
-    getUserName(): string {
+
+
+    /*getUserName(): string {
         if (!this.isSessionActive()) {
             return "";
         } else {
-            let token: string = localStorage.getItem("token");
-            return this.oDecodeService.decode(token).name;
+            return this.oDecodeService.decode(this.getToken()).name;
         }
     }
 
     getToken(): string {
-        return localStorage.getItem("token");
+        return localStorage.getItem("token")!;
     }
 
     isSessionActive(): Boolean {
-        let strToken: string = localStorage.getItem("token");
-        if (strToken) {
-            let oDecodedToken = this.oDecodeService.decode(strToken);
+        if (this.getToken()) {
+            let oDecodedToken = this.oDecodeService.decode(this.getToken());
             if (Date.now() >= oDecodedToken.exp * 1000) {
                 return false;
             } else {
@@ -55,29 +55,12 @@ export class SessionService {
 
     logout() {
         localStorage.removeItem("token");
-    }
-
-    on(event: Events, action: any): Subscription {
-        return this.subject
-          .pipe(
-            filter((e: EmitEvent) => {
-              return e.name === event;
-            }),
-            map((e: EmitEvent) => {
-              return e.value;
-            })
-          )
-          .subscribe(action);
-      }
-    
-      emit(event: EmitEvent) {
-        this.subject.next(event);
-      }
+    }*/
 
 
 }
 
-export class EmitEvent {
+/*export class EmitEvent {
     constructor(public name: any, public value?: any) {}
   }
   
@@ -85,4 +68,4 @@ export class EmitEvent {
   export enum Events {
     login,
     logout
-  }
+}*/

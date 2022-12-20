@@ -19,7 +19,6 @@ import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-re
 import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
 //
 import { LoginComponent } from './component/routed/session/login/login.component';
-import { LogoutComponent } from './component/routed/session/logout/logout.component';
 import { CryptoService } from './service/crypto.service';
 import { PaginationService } from './service/pagination.service';
 import { DecodeService } from './service/decode.service';
@@ -38,7 +37,6 @@ import { DecodeService } from './service/decode.service';
     ProfesorRemoveComponent,
     ProfesorEditComponent,
     LoginComponent,
-    LogoutComponent,
   ],
   imports: [
     BrowserModule,

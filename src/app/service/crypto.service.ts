@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-declare let CryptoJS: any;
+let CryptoJS = require("crypto-js");
 
 @Injectable({
   providedIn: 'root'
