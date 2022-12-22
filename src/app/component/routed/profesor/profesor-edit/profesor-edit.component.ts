@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProfesor, IProfesor2Form, IProfesor2Send } from 'src/app/model/profesor-interface';
+import { IProfesor, IProfesor2Form } from 'src/app/model/profesor-interface';
 import { ProfesorService } from 'src/app/service/profesor.service';
+import { SessionService } from 'src/app/service/session.service';
 
 let bootstrap = require("bootstrap");
 
@@ -33,9 +34,20 @@ export class ProfesorEditComponent implements OnInit {
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oProfesorService: ProfesorService,
+    private oSessionService: SessionService,
     private oFormBuilder: FormBuilder,
     private oLocation: Location
   ) {
+    oSessionService.reload();
+    oSessionService.checkSession().subscribe({
+      next: (data: any) => {
+        // ok
+      },
+      error: (error: any) => {
+        this.oRouter.navigate(['/login']);
+      }
+    })
+
     this.id = oActivatedRoute.snapshot.params['id'];
     this.oProfesor = {} as IProfesor;
     this.oProfesor2Form = {} as IProfesor2Form;

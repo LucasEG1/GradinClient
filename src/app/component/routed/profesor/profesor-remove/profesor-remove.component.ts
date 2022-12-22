@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IProfesor } from 'src/app/model/profesor-interface';
 import { ProfesorService } from 'src/app/service/profesor.service';
+import { SessionService } from 'src/app/service/session.service';
 let bootstrap = require('bootstrap');
 
 @Component({
@@ -16,9 +18,21 @@ export class ProfesorRemoveComponent implements OnInit {
   
   constructor(
     private oLocation: Location,
+    private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oProfesorService: ProfesorService,
+    private oSessionService: SessionService
   ) {
+    oSessionService.reload();
+    oSessionService.checkSession().subscribe({
+      next: (data: any) => {
+        // ok
+      },
+      error: (error: any) => {
+        this.oRouter.navigate(['/login']);
+      }
+    })
+
     this.id = oActivatedRoute.snapshot.params['id'];
   }
 

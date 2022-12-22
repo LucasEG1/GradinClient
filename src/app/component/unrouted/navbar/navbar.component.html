@@ -7,14 +7,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
+				<li class="nav-item" *ngIf="isSuperuser">
 					<a class="nav-link" aria-current="page" routerLinkActive="active" [routerLink]="['/profesores']" >Profesores</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" *ngIf="!isLogged">
 					<a class="nav-link" aria-current="page" routerLinkActive="active" [routerLink]="['/login']" >Inicia sesión</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" *ngIf="isLogged">
 					<a class="nav-link" aria-current="page" routerLinkActive="active" [routerLink]="['/logout']" >Cierra sesión</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"><div class="usuario">{{loggedUser}}</div></a>
+					
 				</li>
 			</ul>
 		</div>

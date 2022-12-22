@@ -11,23 +11,30 @@ import { SessionService } from 'src/app/service/session.service';
 export class LogoutComponent implements OnInit {
 
   constructor(
-    private oAuthService: SessionService,
+    private oSessionService: SessionService,
     private oRouter: Router
-  ) { }
+  ) {
+    oSessionService.reload();
+    oSessionService.checkSession().subscribe({
+      next: (data: any) => {
+        // ok
+      },
+      error: (error: any) => {
+        this.oRouter.navigate(['/login']);
+      }
+    })
+   }
 
   ngOnInit(): void {
-    this.cerrarSesion();
   }
 
   cerrarSesion() {
     localStorage.removeItem('profesor');
-    this.oAuthService.logout().subscribe({
+    this.oSessionService.logout().subscribe({
       next: (data: any) => {
-        localStorage.removeItem("profesor");
-        this.oRouter.navigate(['']);
+        this.oSessionService.reload();
       },
       error: (error: any) => {
-        this.oRouter.navigate(['/login']);
       }
     })
   }

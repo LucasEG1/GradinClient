@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IProfesor2Form, IProfesor2Send } from 'src/app/model/profesor-interface';
 import { ProfesorService } from 'src/app/service/profesor.service';
+import { SessionService } from 'src/app/service/session.service';
 
 let bootstrap = require("bootstrap");
 
@@ -29,8 +30,20 @@ export class ProfesorNewComponent implements OnInit {
   constructor(
     private oRouter: Router,
     private oProfesorService: ProfesorService,
-    private oFormBuilder: FormBuilder
+    private oFormBuilder: FormBuilder,
+    private oSessionService: SessionService
   ) {
+    oSessionService.reload();
+    this.oSessionService.checkSession().subscribe({
+      next: (data: any) => {
+        // Continúa cargando la página, no hace falta poner un método
+      },
+      error: (error: any) => {
+        this.oRouter.navigate(['/login']);
+      }      
+    })
+
+
     this.oProfesor = {} as IProfesor2Send;
     this.oProfesor2Form = {} as IProfesor2Form;
     this.oForm = {} as FormGroup<IProfesor2Form>;

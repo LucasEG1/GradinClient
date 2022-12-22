@@ -6,6 +6,7 @@ import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
 import { IProfesor, IProfesorBean } from '../model/profesor-interface';
 import { Router } from '@angular/router';
+import { IUser } from '../model/user-interface';
 
 @Injectable({
     providedIn: 'root'
@@ -13,23 +14,26 @@ import { Router } from '@angular/router';
 
 export class SessionService {
 
+
     private entityURL = '/sesion';
     url: string = `${baseURL}${this.entityURL}`;
-    subject = new Subject<any>();
+    subject = new Subject<void>();
+
+
 
     constructor(
         private oCryptoService: CryptoService,
         private oHttpClient: HttpClient,
         private oRouter: Router,
-        private oDecodeService: DecodeService
     ) { }
 
     login(profesorBean: IProfesorBean): Observable<IProfesor> {
         return this.oHttpClient.post<IProfesor>(this.url + "/login", profesorBean, httpOptions);
     }
 
-    checkSession(): Observable<IProfesor> {
-        return this.oHttpClient.post<IProfesor>(this.url, httpOptions);
+    checkSession(): Observable<IUser> {
+        return this.oHttpClient.get<IUser>(this.url, httpOptions);
+
     }
 
     logout(): Observable<any> {
@@ -37,6 +41,24 @@ export class SessionService {
         this.oRouter.navigate(['']);
         return this.oHttpClient.delete(this.url + "/logout", httpOptions);
     }
+
+    reload() {
+        this.subject.next();
+    }
+
+    /*isAdmin(): boolean {
+        this.checkSession().subscribe({
+            next: (data: IUser) => {
+                if (data.superuser == true) {
+                    return true;
+                }
+                return false;
+            },
+            error: (error: any) => {
+                return false;
+            }
+        });
+    }*/
 
 
 

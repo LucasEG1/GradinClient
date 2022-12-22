@@ -3,7 +3,7 @@
   <div class="col-md text-end d-flex mb-3 ">
     <!-- Paginación -->
     <div class="col-md">
-      <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+      <app-pagination-unrouted [nPage]="responseFromServer.numberOfElements + 1" [nTotalPages]="responseFromServer.totalPages"
         (eePage)="setPage($event)"></app-pagination-unrouted>
     </div>
     <!-- Búsqueda y selector RPP -->

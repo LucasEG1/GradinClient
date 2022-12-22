@@ -20,10 +20,19 @@ export class LoginComponent implements OnInit {
   minLengthPass: number = 5;
   constructor(
     private oRouter: Router,
-    private oAuth: SessionService,
+    private oSessionService: SessionService,
     private oCryptoService: CryptoService,
     private loginFormBuilder: FormBuilder
   ) {
+    oSessionService.reload();
+    oSessionService.checkSession().subscribe({
+      next: (data: any) => {
+        // ok
+      },
+      error: (error: any) => {
+        this.oRouter.navigate(['/login']);
+      }
+    })
     this.profesorBean = {} as IProfesorBean;
     this.profesorBeanForm = {} as IProfesorBeanForm;
     this.loginForm = {} as FormGroup<IProfesorBeanForm>;
@@ -41,7 +50,7 @@ export class LoginComponent implements OnInit {
       pass: this.oCryptoService.getSHA256(this.loginForm.value.pass!) as string
     }
     if (this.loginForm.valid) {
-      this.oAuth.login(this.profesorBean).subscribe({
+      this.oSessionService.login(this.profesorBean).subscribe({
         next: (data: IProfesor) => {
           localStorage.setItem('profesor', JSON.stringify(data));
           this.oRouter.navigate(['']);
@@ -58,7 +67,7 @@ export class LoginComponent implements OnInit {
       dni : '00000000T',
       pass : '7a84143d54b59fe2186d394f66fa59b5b81e12c8edf9cbe71cece88d9388ff45'
     }
-    this.oAuth.login(adminBean).subscribe({
+    this.oSessionService.login(adminBean).subscribe({
       next: (data: IProfesor) => {
         localStorage.setItem('profesor', JSON.stringify(data));
         this.oRouter.navigate(['']);

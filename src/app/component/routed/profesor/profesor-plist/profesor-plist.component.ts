@@ -26,19 +26,22 @@ export class ProfesoresPlistComponent implements OnInit {
     private oSessionService: SessionService,
     private oRouter: Router
   ) {
-    this.responseFromServer = {} as IPage<IProfesor>;
-  }
-
-  ngOnInit(): void {
-    /*this.oSessionService.checkSession().subscribe({
+    oSessionService.reload();
+    this.oSessionService.checkSession().subscribe({
       next: (data: any) => {
         this.getPage();
       },
       error: (error: any) => {
         this.oRouter.navigate(['/login']);
       }      
-    })*/
-    this.getPage();
+    })
+
+
+    this.responseFromServer = {} as IPage<IProfesor>;
+  }
+
+  ngOnInit(): void {
+
   }
 
   getPage() {
