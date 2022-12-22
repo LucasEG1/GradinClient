@@ -3,6 +3,8 @@ import { IPage } from 'src/app/model/generic-types-interface';
 import { IProfesor } from 'src/app/model/profesor-interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProfesorService } from 'src/app/service/profesor.service';
+import { SessionService } from 'src/app/service/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profesor-plist',
@@ -20,12 +22,22 @@ export class ProfesoresPlistComponent implements OnInit {
   sortDirection: string = "";
 
   constructor(
-    private oProfesorService: ProfesorService
+    private oProfesorService: ProfesorService,
+    private oSessionService: SessionService,
+    private oRouter: Router
   ) {
     this.responseFromServer = {} as IPage<IProfesor>;
   }
 
   ngOnInit(): void {
+    /*this.oSessionService.checkSession().subscribe({
+      next: (data: any) => {
+        this.getPage();
+      },
+      error: (error: any) => {
+        this.oRouter.navigate(['/login']);
+      }      
+    })*/
     this.getPage();
   }
 

@@ -22,6 +22,7 @@ import { LoginComponent } from './component/routed/session/login/login.component
 import { CryptoService } from './service/crypto.service';
 import { PaginationService } from './service/pagination.service';
 import { DecodeService } from './service/decode.service';
+import { LogoutComponent } from './component/routed/session/logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { DecodeService } from './service/decode.service';
     ProfesorRemoveComponent,
     ProfesorEditComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

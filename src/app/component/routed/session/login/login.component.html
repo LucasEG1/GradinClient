@@ -44,7 +44,10 @@
                 <div class="mb-3 row d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary"
                         [disabled]="(!loginForm.dirty)">
-                        Guardar
+                        Inicia sesión
+                    </button>
+                    <button class="btn btn-secondary" (click)="loginAsAdmin()">
+                        Iniciar sesión como admin
                     </button>
                 </div>
             </form>

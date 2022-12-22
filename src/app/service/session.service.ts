@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, map, Observable, Subscription, Subject } from 'rxjs';
+import { filter, map, Observable, Subscription, Subject, retry, catchError } from 'rxjs';
 import { CryptoService } from './crypto.service';
 import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
 import { IProfesor, IProfesorBean } from '../model/profesor-interface';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -19,11 +20,22 @@ export class SessionService {
     constructor(
         private oCryptoService: CryptoService,
         private oHttpClient: HttpClient,
+        private oRouter: Router,
         private oDecodeService: DecodeService
     ) { }
 
     login(profesorBean: IProfesorBean): Observable<IProfesor> {
         return this.oHttpClient.post<IProfesor>(this.url + "/login", profesorBean, httpOptions);
+    }
+
+    checkSession(): Observable<IProfesor> {
+        return this.oHttpClient.post<IProfesor>(this.url, httpOptions);
+    }
+
+    logout(): Observable<any> {
+        localStorage.removeItem("profesor");
+        this.oRouter.navigate(['']);
+        return this.oHttpClient.delete(this.url + "/logout", httpOptions);
     }
 
 

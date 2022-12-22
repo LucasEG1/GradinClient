@@ -44,13 +44,31 @@ export class LoginComponent implements OnInit {
       this.oAuth.login(this.profesorBean).subscribe({
         next: (data: IProfesor) => {
           localStorage.setItem('profesor', JSON.stringify(data));
-          this.oRouter.navigate(['/profesor', data.id, 'view']);
+          this.oRouter.navigate(['']);
         },
         error: (error: any) => {
-          console.log(error);
+          this.oRouter.navigate(['/login']);
         }
       })
     }
   }
+
+  loginAsAdmin() {
+    let adminBean: IProfesorBean = {
+      dni : '00000000T',
+      pass : '7a84143d54b59fe2186d394f66fa59b5b81e12c8edf9cbe71cece88d9388ff45'
+    }
+    this.oAuth.login(adminBean).subscribe({
+      next: (data: IProfesor) => {
+        localStorage.setItem('profesor', JSON.stringify(data));
+        this.oRouter.navigate(['']);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
+    
+  }
+
 
 }

@@ -7,10 +7,12 @@ import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-re
 import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/profesor-new.component';
 import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
 import { LoginComponent } from './component/routed/session/login/login.component';
+import { LogoutComponent } from './component/routed/session/logout/logout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent},
   { path: 'profesores', component: ProfesoresPlistComponent },
   { path: 'profesor/new', component: ProfesorNewComponent },
   { path: 'profesor/:id/view', component: ProfesorViewComponent },
