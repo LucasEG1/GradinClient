@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { IPage } from 'src/app/model/generic-types-interface';
-import { IProfesor } from 'src/app/model/profesor-interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ProfesorService } from 'src/app/service/profesor.service';
-import { SessionService } from 'src/app/service/session.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IAsignatura } from 'src/app/model/asignatura-interface';
+import { IPage } from 'src/app/model/generic-types-interface';
+import { AsignaturaService } from 'src/app/service/asignatura.service';
+import { SessionService } from 'src/app/service/session.service';
 
 @Component({
-  selector: 'app-profesor-plist',
-  templateUrl: './profesor-plist.component.html',
-  styleUrls: ['./profesor-plist.component.css']
+  selector: 'app-asignatura-plist',
+  templateUrl: './asignatura-plist.component.html',
+  styleUrls: ['./asignatura-plist.component.css']
 })
-export class ProfesoresPlistComponent implements OnInit {
+export class AsignaturaPlistComponent implements OnInit {
 
-  responseFromServer: IPage<IProfesor>;
+  responseFromServer: IPage<IAsignatura>;
   //
   strTermFilter: string = "";
   numberOfElements: number = 5;
@@ -22,7 +22,7 @@ export class ProfesoresPlistComponent implements OnInit {
   sortDirection: string = "";
 
   constructor(
-    private oProfesorService: ProfesorService,
+    private oAsignaturaService: AsignaturaService,
     private oSessionService: SessionService,
     private oRouter: Router
   ) {
@@ -35,16 +35,17 @@ export class ProfesoresPlistComponent implements OnInit {
         this.oRouter.navigate(['/login']);
       }      
     })
-    this.responseFromServer = {} as IPage<IProfesor>;
+    this.responseFromServer = {} as IPage<IAsignatura>;
   }
 
   ngOnInit(): void {
+
   }
 
   getPage() {
-    this.oProfesorService.listarProfesores(this.page, this.numberOfElements, this.strTermFilter, this.sortField, this.sortDirection)
+    this.oAsignaturaService.listarAsignaturas(this.page, this.numberOfElements, this.strTermFilter, this.sortField, this.sortDirection)
     .subscribe({
-      next: (resp: IPage<IProfesor>) => {
+      next: (resp: IPage<IAsignatura>) => {
         this.responseFromServer = resp;
         if (this.page > resp.totalPages - 1) {
           this.page = resp.totalPages - 1;

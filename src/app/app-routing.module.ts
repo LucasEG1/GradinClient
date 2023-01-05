@@ -8,6 +8,8 @@ import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/p
 import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
 import { LoginComponent } from './component/routed/session/login/login.component';
 import { LogoutComponent } from './component/routed/session/logout/logout.component';
+import { AsignaturaPlistComponent } from './component/routed/asignatura/asignatura-plist/asignatura-plist.component';
+import { AsignaturaViewComponent } from './component/routed/asignatura/asignatura-view/asignatura-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'profesor/:id/view', component: ProfesorViewComponent },
   { path: 'profesor/:id/remove', component: ProfesorRemoveComponent },
   { path: 'profesor/:id/edit', component: ProfesorEditComponent },
+  { path: 'asignaturas', component: AsignaturaPlistComponent },
+  { path: 'asignatura/:id/view', component: AsignaturaViewComponent },
 ];
 
 @NgModule({
