@@ -1,0 +1,123 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Alta de Asignatura</h1>
+
+            <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm-4 has-validation">
+                        <input type="text" class="form-control"
+                            [ngClass]="
+                            {'is-valid':    oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['required'] &&
+                                            oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['minlength'] &&
+                                            oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['maxlength'],
+                            'is-invalid' :  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength'] ||
+                                            oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength'] ||  
+                                            oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']}" id="inputNombre"
+                            formControlName="nombre">
+                        <div id="inputNombreFeedback" class="invalid-feedback"
+                            *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength']">
+                            La longitud mínima es de {{minLengthNombre}} caracteres.
+                        </div>
+                        <div id="inputNombreFeedback" class="invalid-feedback"
+                            *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength']">
+                            La longitud máxima es de {{maxLengthNombre}} caracteres.
+                        </div>
+                        <div id="inputNombreFeedback" class="invalid-feedback"
+                            *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']">
+                            El campo es obligatorio.
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputProfesor" class="col-sm-2 col-form-label">Profesor</label>
+                    <div class="col-sm-4 has-validation">
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                            [ngClass]="{
+                            'is-valid':    oForm.controls.profesor.dirty && !oForm.controls.profesor.errors?.['required'],
+                            'is-invalid' :  oForm.controls.profesor.dirty &&  oForm.controls.profesor.errors?.['required']}"
+                            id="inputProfesor" formControlName="profesor" readonly>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalSeleccionProfesor">
+                                Seleccionar
+                            </button>
+                        </div>
+                        <div id="inputProfesorFeedback" class="invalid-feedback"
+                            *ngIf="oForm.controls.profesor.dirty && oForm.controls.profesor.errors?.['required']">
+                            El campo es obligatorio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputIsbnLibro" class="col-sm-2 col-form-label">ISBN del libro (opcional)</label>
+                    <div class="col-sm-4 has-validation">
+                        <input type="text" class="form-control"
+                            [ngClass]="
+                            {'is-valid':    oForm.controls.isbnLibro.dirty && !oForm.controls.isbnLibro.errors?.['minlength'] &&
+                                            oForm.controls.isbnLibro.dirty && !oForm.controls.isbnLibro.errors?.['maxlength'],
+                            'is-invalid' :  oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['minlength'] ||
+                                            oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['maxlength']}" id="inputIsbnLibro"
+                            formControlName="isbnLibro">
+                        <div id="inputIsbnLibroFeedback" class="invalid-feedback"
+                            *ngIf="oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['minlength']">
+                            Si escribes un ISBN, la longitud mínima es de {{minLengthIsbn}} caracteres.
+                        </div>
+                        <div id="inputIsbnLibroFeedback" class="invalid-feedback"
+                            *ngIf="oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['maxlength']">
+                            Si escribes un ISBN, la longitud máxima es de {{maxLengthIsbn}} caracteres.
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="(oForm.invalid && oForm.dirty) || (!oForm.dirty)">
+                    Guardar
+                </button>
+
+                <div class="modal fade" id="modalAvisoCreacion" tabindex="-1" aria-labelledby="modalAvisoCreacionLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalAvisoCreacionLabel">- Gradin -</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Asignatura añadida con éxito. Cierre este aviso para ver los detalles.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Entendido.</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade bd-example-modal-lg" id="modalSeleccionProfesor" tabindex="-1"
+                    aria-labelledby="modalSeleccionProfesorLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalSeleccionProfesorLabel">- Gradin -</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <app-profesor-finder (idSeleccionado)="cerrarModalSeleccion(id)"></app-profesor-finder>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -10,6 +10,7 @@ import { LoginComponent } from './component/routed/session/login/login.component
 import { LogoutComponent } from './component/routed/session/logout/logout.component';
 import { AsignaturaPlistComponent } from './component/routed/asignatura/asignatura-plist/asignatura-plist.component';
 import { AsignaturaViewComponent } from './component/routed/asignatura/asignatura-view/asignatura-view.component';
+import { AsignaturaNewComponent } from './component/routed/asignatura/asignatura-new/asignatura-new.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'profesor/:id/remove', component: ProfesorRemoveComponent },
   { path: 'profesor/:id/edit', component: ProfesorEditComponent },
   { path: 'asignaturas', component: AsignaturaPlistComponent },
+  { path: 'asignatura/new', component: AsignaturaNewComponent },
   { path: 'asignatura/:id/view', component: AsignaturaViewComponent },
 ];
 

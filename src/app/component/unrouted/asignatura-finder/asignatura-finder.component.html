@@ -1,0 +1,39 @@
+<div class="container mt-3">
+    <div class="display-2 text-center mb-3">Listado de asignaturas</div>
+    <div class="col-md text-end d-flex mb-3 ">
+        <!-- Paginación -->
+        <div class="col-md">
+            <app-pagination-unrouted [nPage]="responseFromServer.numberOfElements + 1"
+                [nTotalPages]="responseFromServer.totalPages" (eePage)="setPage($event)"></app-pagination-unrouted>
+        </div>
+        <!-- Búsqueda y selector RPP -->
+        <app-search-unrouted [placeHolder]="'Buscar asignatura'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+        <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.numberOfElements"
+            (eeRpp)="this.setRpp($event)">
+        </app-dropdown-register-page>
+    </div>
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Profesor</th>
+                <th scope="col">ISBN del libro</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let asignatura of responseFromServer.content">
+                <td>{{asignatura.id}}</td>
+                <td>{{asignatura.nombre}}</td>
+                <td>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido1}} {{asignatura.profesor.apellido2}}</td>
+                <td>{{asignatura.isbnLibro}}</td>
+                <td><a class="btn btn-primary" (click)="seleccionarId(asignatura.id)">Seleccionar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="botonera-inferior d-flex justify-content-center">
+        <a [routerLink]="['/asignatura', 'new']" class="btn btn-primary mx-3">Alta de asignatura</a>
+    </div>
+
+</div>

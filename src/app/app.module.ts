@@ -29,6 +29,9 @@ import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit
 import { AsignaturaPlistComponent } from './component/routed/asignatura/asignatura-plist/asignatura-plist.component';
 import { AsignaturaDetailComponent } from './component/unrouted/component-detail/asignatura-detail/asignatura-detail.component';
 import { AsignaturaViewComponent } from './component/routed/asignatura/asignatura-view/asignatura-view.component';
+import { AsignaturaFinderComponent } from './component/unrouted/asignatura-finder/asignatura-finder.component';
+import { AsignaturaNewComponent } from './component/routed/asignatura/asignatura-new/asignatura-new.component';
+import { ProfesorFinderComponent } from './component/unrouted/profesor-finder/profesor-finder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,9 @@ import { AsignaturaViewComponent } from './component/routed/asignatura/asignatur
     AsignaturaPlistComponent,
     AsignaturaDetailComponent,
     AsignaturaViewComponent,
+    AsignaturaFinderComponent,
+    AsignaturaNewComponent,
+    ProfesorFinderComponent,
   ],
   imports: [
     BrowserModule,
