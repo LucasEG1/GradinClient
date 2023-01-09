@@ -35,13 +35,12 @@
                     <label for="inputProfesor" class="col-sm-2 col-form-label">Profesor</label>
                     <div class="col-sm-4 has-validation">
                         <div class="input-group">
-                            <input type="text" class="form-control"
+                            <input type="number" class="form-control"
                             [ngClass]="{
                             'is-valid':    oForm.controls.profesor.dirty && !oForm.controls.profesor.errors?.['required'],
                             'is-invalid' :  oForm.controls.profesor.dirty &&  oForm.controls.profesor.errors?.['required']}"
                             id="inputProfesor" formControlName="profesor" readonly>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modalSeleccionProfesor">
+                            <button type="button" class="btn btn-primary" (click)="abrirModalSeleccion()" >
                                 Seleccionar
                             </button>
                         </div>
@@ -109,7 +108,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <app-profesor-finder (idSeleccionado)="cerrarModalSeleccion(id)"></app-profesor-finder>
+                                <app-profesor-finder (idSeleccionado)="cerrarModalSeleccion($event)"></app-profesor-finder>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

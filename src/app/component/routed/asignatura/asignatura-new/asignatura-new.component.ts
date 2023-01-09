@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IAsignatura, IAsignatura2Form, IAsignatura2Send } from 'src/app/model/asignatura-interface';
+import { IAsignatura2Form, IAsignatura2Send } from 'src/app/model/asignatura-interface';
 import { IProfesor } from 'src/app/model/profesor-interface';
 import { AsignaturaService } from 'src/app/service/asignatura.service';
+import { ProfesorService } from 'src/app/service/profesor.service';
 import { SessionService } from 'src/app/service/session.service';
 
 
@@ -16,8 +17,6 @@ let bootstrap = require("bootstrap");
 })
 export class AsignaturaNewComponent implements OnInit {
 
-  id: number = 0;
-  oAsignatura: IAsignatura;
   oAsignatura2Send: IAsignatura2Send;
   oAsignatura2Form: IAsignatura2Form;
   oForm: FormGroup<IAsignatura2Form>;
@@ -28,11 +27,13 @@ export class AsignaturaNewComponent implements OnInit {
   maxLengthIsbn: number = 13;
   // modal
   idModal: string = "modalAvisoCreacion";
+  modalSeleccionProfesor: any;
 
   constructor(
     private oRouter: Router,
     private oAsignaturaService: AsignaturaService,
     private oFormBuilder: FormBuilder,
+    private oProfesorService: ProfesorService,
     private oSessionService: SessionService
   ) {
     oSessionService.reload();
@@ -42,9 +43,8 @@ export class AsignaturaNewComponent implements OnInit {
       },
       error: (error: any) => {
         this.oRouter.navigate(['/login']);
-      }      
+      }
     })
-    this.oAsignatura = {} as IAsignatura;
     this.oAsignatura2Form = {} as IAsignatura2Form;
     this.oForm = {} as FormGroup<IAsignatura2Form>;
     this.oAsignatura2Send = {} as IAsignatura2Send;
@@ -69,7 +69,10 @@ export class AsignaturaNewComponent implements OnInit {
       this.oAsignaturaService.create(this.oAsignatura2Send).subscribe({
         next: (data: number) => {
           this.showModal(data);
-        }
+        },
+        error: (error: any) => {
+          console.log(error);
+        }        
       })
     }
   }
@@ -79,12 +82,19 @@ export class AsignaturaNewComponent implements OnInit {
       keyboard: false
     });
     modalAvisoCreacion.show();
-    this.oRouter.navigate(['/Asignatura', data, 'view'])
+    this.oRouter.navigate(['/asignatura', data, 'view'])
   }
 
-  cerrarModalSeleccion(id: number) {
-    console.log(id);
-    this.oForm.controls['profesor'].setValue(id);
+  abrirModalSeleccion(): void {
+    this.modalSeleccionProfesor = new bootstrap.Modal(document.getElementById("modalSeleccionProfesor"), {
+      keyboard: false
+    });
+    this.modalSeleccionProfesor.show();
+  }
+
+  cerrarModalSeleccion(profesor: number): void {
+    this.oForm.controls['profesor'].setValue(profesor);
+    this.modalSeleccionProfesor.hide();
   }
 
 }

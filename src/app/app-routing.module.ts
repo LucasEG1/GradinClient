@@ -11,6 +11,8 @@ import { LogoutComponent } from './component/routed/session/logout/logout.compon
 import { AsignaturaPlistComponent } from './component/routed/asignatura/asignatura-plist/asignatura-plist.component';
 import { AsignaturaViewComponent } from './component/routed/asignatura/asignatura-view/asignatura-view.component';
 import { AsignaturaNewComponent } from './component/routed/asignatura/asignatura-new/asignatura-new.component';
+import { AsignaturaRemoveComponent } from './component/routed/asignatura/asignatura-remove/asignatura-remove.component';
+import { AsignaturaEditComponent } from './component/routed/asignatura/asignatura-edit/asignatura-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +26,9 @@ const routes: Routes = [
   { path: 'asignaturas', component: AsignaturaPlistComponent },
   { path: 'asignatura/new', component: AsignaturaNewComponent },
   { path: 'asignatura/:id/view', component: AsignaturaViewComponent },
-];
+  { path: 'asignatura/:id/remove', component: AsignaturaRemoveComponent },
+  { path: 'asignatura/:id/edit', component: AsignaturaEditComponent }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

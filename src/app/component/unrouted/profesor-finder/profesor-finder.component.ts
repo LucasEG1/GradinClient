@@ -83,6 +83,9 @@ export class ProfesorFinderComponent implements OnInit {
   }
 
   seleccionarId(id: number) {
+    //this.idSeleccionado.emit(id);
+  }
+  seleccionarProfesor(id: number) {
     this.idSeleccionado.emit(id);
   }
 
