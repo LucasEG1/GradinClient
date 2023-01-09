@@ -10,6 +10,7 @@ export interface IAsignatura {
 }
 
 export interface IAsignatura2Form {
+    id: FormControl<number>;
     nombre: FormControl<string>;
     profesor: FormControl<IEntity>;
     isbnLibro: FormControl<string>;
