@@ -36,6 +36,7 @@
                     <div class="col-sm-4 has-validation">
                         <div class="input-group">
                             <input type="number" class="form-control"
+                            [value]="oForm.controls.profesor.value.id"
                             [ngClass]="{
                             'is-valid':    oForm.controls.profesor.dirty && !oForm.controls.profesor.errors?.['required'],
                             'is-invalid' :  oForm.controls.profesor.dirty &&  oForm.controls.profesor.errors?.['required']}"
@@ -52,15 +53,17 @@
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="inputIsbnLibro" class="col-sm-2 col-form-label">ISBN del libro (opcional)</label>
+                    <label for="inputIsbnLibro" class="col-sm-2 col-form-label">ISBN del libro</label>
                     <div class="col-sm-4 has-validation">
                         <input type="text" class="form-control"
                             [ngClass]="
                             {'is-valid':    oForm.controls.isbnLibro.dirty && !oForm.controls.isbnLibro.errors?.['minlength'] &&
-                                            oForm.controls.isbnLibro.dirty && !oForm.controls.isbnLibro.errors?.['maxlength'],
+                                            oForm.controls.isbnLibro.dirty && !oForm.controls.isbnLibro.errors?.['maxlength'] ||
+                                            oForm.controls.profesor.dirty && !oForm.controls.profesor.errors?.['required'],
                             'is-invalid' :  oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['minlength'] ||
-                                            oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['maxlength']}" id="inputIsbnLibro"
-                            formControlName="isbnLibro">
+                                            oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['maxlength'] ||
+                                            oForm.controls.profesor.dirty &&  oForm.controls.profesor.errors?.['required']}"
+                            id="inputIsbnLibro" formControlName="isbnLibro">
                         <div id="inputIsbnLibroFeedback" class="invalid-feedback"
                             *ngIf="oForm.controls.isbnLibro.dirty &&  oForm.controls.isbnLibro.errors?.['minlength']">
                             Si escribes un ISBN, la longitud mínima es de {{minLengthIsbn}} caracteres.
@@ -117,6 +120,18 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <h1 class="text-center">Información del profesor</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">{{oProfesor.nombre || "Selecciona un profesor"}}</h1>
+                        <h2 class="card-subtitle mb-2 text-center">{{oProfesor.apellido1 || ""}} {{oProfesor.apellido2 || ""}}</h2>
+                        <h2 class="card-text text-center text-info">{{oProfesor.email || ""}}</h2>
+                    </div>
+            </div>
+
         </div>
     </div>
 </div>

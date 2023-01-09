@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAsignatura2Form, IAsignatura2Send } from 'src/app/model/asignatura-interface';
-import { IProfesor } from 'src/app/model/profesor-interface';
+import { IEntity } from 'src/app/model/generic-types-interface';
+import { IProfesor, IProfesor2Form } from 'src/app/model/profesor-interface';
 import { AsignaturaService } from 'src/app/service/asignatura.service';
 import { ProfesorService } from 'src/app/service/profesor.service';
 import { SessionService } from 'src/app/service/session.service';
@@ -17,6 +18,8 @@ let bootstrap = require("bootstrap");
 })
 export class AsignaturaNewComponent implements OnInit {
 
+  oProfesor: IProfesor;
+  oProfesorIEntity: IEntity;
   oAsignatura2Send: IAsignatura2Send;
   oAsignatura2Form: IAsignatura2Form;
   oForm: FormGroup<IAsignatura2Form>;
@@ -48,6 +51,8 @@ export class AsignaturaNewComponent implements OnInit {
     this.oAsignatura2Form = {} as IAsignatura2Form;
     this.oForm = {} as FormGroup<IAsignatura2Form>;
     this.oAsignatura2Send = {} as IAsignatura2Send;
+    this.oProfesor = {} as IProfesor;
+    this.oProfesorIEntity = {} as IEntity;
   }
 
   ngOnInit() {
@@ -55,14 +60,14 @@ export class AsignaturaNewComponent implements OnInit {
       id: [''],
       nombre: ['', [Validators.required, Validators.minLength(this.minLengthNombre), Validators.maxLength(this.maxLengthNombre)]],
       profesor: ['', [Validators.required]],
-      isbnLibro: ['', [Validators.minLength(this.minLengthIsbn), Validators.maxLength(this.maxLengthIsbn)]]
+      isbnLibro: ['', [Validators.required, Validators.minLength(this.minLengthIsbn), Validators.maxLength(this.maxLengthIsbn)]]
     });
   }
 
   onSubmit() {
     this.oAsignatura2Send = {
       nombre: this.oForm.value.nombre as string,
-      profesor: this.oForm.value.profesor as number,
+      profesor: this.oForm.value.profesor as IEntity,
       isbnLibro: this.oForm.value.isbnLibro as string
     }
     if (this.oForm.valid) {
@@ -92,8 +97,19 @@ export class AsignaturaNewComponent implements OnInit {
     this.modalSeleccionProfesor.show();
   }
 
-  cerrarModalSeleccion(profesor: number): void {
-    this.oForm.controls['profesor'].setValue(profesor);
+  cerrarModalSeleccion(idProfesor: number): void {
+    this.oProfesorIEntity.id = idProfesor;
+    this.oProfesorService.getOne(idProfesor).subscribe({
+      next: (data: IProfesor) => {
+        this.oProfesor = data;
+        this.oForm.patchValue({
+          profesor: this.oProfesorIEntity
+        });
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
     this.modalSeleccionProfesor.hide();
   }
 

@@ -25,14 +25,14 @@ import { ProfesorNewComponent } from './component/routed/profesor/profesor-new/p
 import { ProfesorViewComponent } from './component/routed/profesor/profesor-view/profesor-view.component';
 import { ProfesorRemoveComponent } from './component/routed/profesor/profesor-remove/profesor-remove.component';
 import { ProfesorEditComponent } from './component/routed/profesor/profesor-edit/profesor-edit.component';
-import { ProfesorFinderComponent } from './component/unrouted/profesor-finder/profesor-finder.component';
+import { ProfesorFinderComponent } from './component/routed/profesor/profesor-finder/profesor-finder.component';
 //
 import { AsignaturaPlistComponent } from './component/routed/asignatura/asignatura-plist/asignatura-plist.component';
 import { AsignaturaDetailComponent } from './component/unrouted/component-detail/asignatura-detail/asignatura-detail.component';
 import { AsignaturaViewComponent } from './component/routed/asignatura/asignatura-view/asignatura-view.component';
 import { AsignaturaNewComponent } from './component/routed/asignatura/asignatura-new/asignatura-new.component';
 import { AsignaturaRemoveComponent } from './component/routed/asignatura/asignatura-remove/asignatura-remove.component';
-import { AsignaturaFinderComponent } from './component/unrouted/asignatura-finder/asignatura-finder.component';
+import { AsignaturaFinderComponent } from './component/routed/asignatura/asignatura-finder/asignatura-finder.component';
 import { AsignaturaEditComponent } from './component/routed/asignatura/asignatura-edit/asignatura-edit.component';
 @NgModule({
   declarations: [

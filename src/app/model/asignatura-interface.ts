@@ -1,4 +1,5 @@
 import { FormControl } from "@angular/forms";
+import { IEntity } from "./generic-types-interface";
 import { IProfesor } from "./profesor-interface";
 
 export interface IAsignatura {
@@ -10,12 +11,12 @@ export interface IAsignatura {
 
 export interface IAsignatura2Form {
     nombre: FormControl<string>;
-    profesor: FormControl<number>;
+    profesor: FormControl<IEntity>;
     isbnLibro: FormControl<string>;
 }
 
 export interface IAsignatura2Send {
     nombre: string;
-    profesor: number;
+    profesor: IEntity;
     isbnLibro: string;
 }
