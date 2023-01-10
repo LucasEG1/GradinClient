@@ -21,3 +21,9 @@ export interface IAsignatura2Send {
     profesor: IEntity;
     isbnLibro: string;
 }
+
+export interface IAsignatura2Edit extends IEntity {
+    nombre: string;
+    profesor: IEntity;
+    isbnLibro: string;
+}

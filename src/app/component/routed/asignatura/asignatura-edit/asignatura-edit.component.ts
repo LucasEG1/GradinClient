@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IAsignatura, IAsignatura2Form, IAsignatura2Send } from 'src/app/model/asignatura-interface';
+import { IAsignatura, IAsignatura2Edit, IAsignatura2Form, IAsignatura2Send } from 'src/app/model/asignatura-interface';
 import { IEntity } from 'src/app/model/generic-types-interface';
 import { IProfesor } from 'src/app/model/profesor-interface';
 import { AsignaturaService } from 'src/app/service/asignatura.service';
@@ -17,10 +17,10 @@ let bootstrap = require("bootstrap");
 export class AsignaturaEditComponent implements OnInit {
 
   id: number;
-
+  oAsignatura: IAsignatura2Edit;
   oProfesor: IProfesor;
   oProfesorIEntity: IEntity;
-  oAsignatura2Send: IAsignatura;
+  oAsignatura2Send: IAsignatura2Send;
   oAsignatura2Form: IAsignatura2Form;
   oForm: FormGroup<IAsignatura2Form>;
   // validaciones de longitud
@@ -52,9 +52,16 @@ export class AsignaturaEditComponent implements OnInit {
     this.id = oActivatedRoute.snapshot.params['id'];
     this.oAsignatura2Form = {} as IAsignatura2Form;
     this.oForm = {} as FormGroup<IAsignatura2Form>;
-    this.oAsignatura2Send = {} as IAsignatura;
+    this.oAsignatura2Send = {} as IAsignatura2Send;
     this.oProfesor = {} as IProfesor;
+    this.oAsignatura = {} as IAsignatura2Edit;
     this.oProfesorIEntity = {} as IEntity;
+    this.oForm = <FormGroup>this.oFormBuilder.group({
+      id: [''],
+      nombre: ['', [Validators.required, Validators.minLength(this.minLengthNombre), Validators.maxLength(this.maxLengthNombre)]],
+      profesor: ['', [Validators.required]],
+      isbnLibro: ['', [Validators.required, Validators.minLength(this.minLengthIsbn), Validators.maxLength(this.maxLengthIsbn)]]
+    });
   }
 
   ngOnInit() {
@@ -75,14 +82,14 @@ export class AsignaturaEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.oAsignatura2Send = {
+    this.oAsignatura = {
       id: this.oForm.value.id as number,
       nombre: this.oForm.value.nombre as string,
-      profesor: this.oForm.value.profesor as IProfesor,
+      profesor: {id: this.oForm.value.profesor as IProfesor},
       isbnLibro: this.oForm.value.isbnLibro as string
     }
     if (this.oForm.valid) {
-      this.oAsignaturaService.update(this.oAsignatura2Send).subscribe({
+      this.oAsignaturaService.update(this.oAsignatura).subscribe({
         next: (data: number) => {
           this.showModal(data);
         },

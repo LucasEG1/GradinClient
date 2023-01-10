@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { baseURL, httpOptions } from 'src/environments/environment';
-import { IAsignatura, IAsignatura2Send } from '../model/asignatura-interface';
+import { IAsignatura, IAsignatura2Edit, IAsignatura2Send } from '../model/asignatura-interface';
 import { IPage } from '../model/generic-types-interface';
 import { Observable } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class AsignaturaService {
     return this.oHttpClient.post<number>(this.url, oAsignatura, httpOptions);
   }
 
-  update(oAsignatura: IAsignatura): Observable<number> {
+  update(oAsignatura: IAsignatura2Edit): Observable<number> {
     return this.oHttpClient.put<number>(this.url, oAsignatura, httpOptions);
   }
 
