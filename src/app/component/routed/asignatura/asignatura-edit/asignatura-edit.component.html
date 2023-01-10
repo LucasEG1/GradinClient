@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
       <div class="col">
-          <h1 class="text-center mb-5">Alta de Asignatura</h1>
+          <h1 class="text-center mb-5">Edición de Asignatura</h1>
 
           <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
 
@@ -35,8 +35,8 @@
                   <label for="inputProfesor" class="col-sm-2 col-form-label">Profesor</label>
                   <div class="col-sm-4 has-validation">
                       <div class="input-group">
-                          <input type="number" class="form-control"
-                          [value]="oForm.controls.profesor.value.id"
+                          <input type="text" class="form-control"
+                          [value]="oProfesor.id"
                           [ngClass]="{
                           'is-valid':    oForm.controls.profesor.dirty && !oForm.controls.profesor.errors?.['required'],
                           'is-invalid' :  oForm.controls.profesor.dirty &&  oForm.controls.profesor.errors?.['required']}"

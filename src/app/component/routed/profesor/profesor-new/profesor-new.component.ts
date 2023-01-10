@@ -52,7 +52,7 @@ export class ProfesorNewComponent implements OnInit {
   ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
-      dni: ['', [Validators.required, Validators.minLength(this.lengthDni), Validators.maxLength(this.lengthDni), Validators.pattern('([a-z]|[A-Z]|[0-9])[0-9]{7}([a-z]|[A-Z]|[0-9])')]],
+      dni: ['', [Validators.required, Validators.minLength(this.lengthDni), Validators.maxLength(this.lengthDni), Validators.pattern('([a-z]|[A-Z]|[0-9])[0-9]{7}([a-z]|[A-Z])')]],
       nombre: ['', [Validators.required, Validators.minLength(this.minLengthNombre), Validators.maxLength(this.maxLengthNombre)]],
       apellido1: ['', [Validators.required, Validators.minLength(this.minLengthApellido), Validators.maxLength(this.maxLengthApellido)]],
       apellido2: ['', [Validators.minLength(this.minLengthApellido), Validators.maxLength(this.maxLengthApellido)]],

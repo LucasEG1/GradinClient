@@ -66,7 +66,7 @@ export class ProfesorEditComponent implements OnInit {
         console.log(data);
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id],
-          dni: [data.dni, [Validators.required, Validators.minLength(this.lengthDni), Validators.maxLength(this.lengthDni), Validators.pattern('([a-z]|[A-Z]|[0-9])[0-9]{7}([a-z]|[A-Z]|[0-9])')]],
+          dni: [data.dni, [Validators.required, Validators.minLength(this.lengthDni), Validators.maxLength(this.lengthDni), Validators.pattern('([a-z]|[A-Z]|[0-9])[0-9]{7}([a-z]|[A-Z])')]],
           nombre: [data.nombre, [Validators.required, Validators.minLength(this.minLengthNombre), Validators.maxLength(this.maxLengthNombre)]],
           apellido1: [data.apellido1, [Validators.required, Validators.minLength(this.minLengthApellido), Validators.maxLength(this.maxLengthApellido)]],
           apellido2: [data.apellido2, [Validators.minLength(this.minLengthApellido), Validators.maxLength(this.maxLengthApellido)]],
