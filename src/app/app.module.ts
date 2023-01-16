@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,6 +33,7 @@ import { AsignaturaNewComponent } from './component/routed/asignatura/asignatura
 import { AsignaturaRemoveComponent } from './component/routed/asignatura/asignatura-remove/asignatura-remove.component';
 import { AsignaturaFinderComponent } from './component/routed/asignatura/asignatura-finder/asignatura-finder.component';
 import { AsignaturaEditComponent } from './component/routed/asignatura/asignatura-edit/asignatura-edit.component';
+import { GeneradorComponent } from './component/routed/generador/generador.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +57,8 @@ import { AsignaturaEditComponent } from './component/routed/asignatura/asignatur
     AsignaturaFinderComponent,
     AsignaturaNewComponent,
     AsignaturaRemoveComponent,
-    AsignaturaEditComponent
+    AsignaturaEditComponent,
+    GeneradorComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +66,6 @@ import { AsignaturaEditComponent } from './component/routed/asignatura/asignatur
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FontAwesomeModule,
     MatPaginatorModule,
     BrowserAnimationsModule
   ],

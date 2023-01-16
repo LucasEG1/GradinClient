@@ -3,8 +3,8 @@
   <div class="col-md text-end d-flex mb-3 ">
     <!-- Paginación -->
     <div class="col-md">
-      <app-pagination-unrouted [nPage]="responseFromServer.numberOfElements + 1" [nTotalPages]="responseFromServer.totalPages"
-        (eePage)="setPage($event)"></app-pagination-unrouted>
+      <app-pagination-unrouted [nPage]="responseFromServer.numberOfElements + 1"
+        [nTotalPages]="responseFromServer.totalPages" (eePage)="setPage($event)"></app-pagination-unrouted>
     </div>
     <!-- Búsqueda y selector RPP -->
     <app-search-unrouted [placeHolder]="'Buscar profesor'" (onSearch)="setFilter( $event )"></app-search-unrouted>
@@ -15,12 +15,30 @@
   <table class="table table-striped text-center">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">DNI</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Primer apellido</th>
-        <th scope="col">Segundo apellido</th>
-        <th scope="col">Correo</th>
+        <th scope="col" (click)="setOrder('id')">#
+          <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+          <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+        </th>
+        <th scope="col" (click)="setOrder('dni')">DNI
+          <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+          <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+        </th>
+        <th scope="col" (click)="setOrder('nombre')">Nombre
+          <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+          <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+        </th>
+        <th scope="col" (click)="setOrder('apellido1')">Primer apellido
+          <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+          <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+        </th>
+        <th scope="col" (click)="setOrder('apellido2')">Segundo apellido
+          <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+          <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+        </th>
+        <th scope="col" (click)="setOrder('email')">Correo
+          <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+          <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+        </th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>

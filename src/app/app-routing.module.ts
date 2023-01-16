@@ -13,11 +13,13 @@ import { AsignaturaViewComponent } from './component/routed/asignatura/asignatur
 import { AsignaturaNewComponent } from './component/routed/asignatura/asignatura-new/asignatura-new.component';
 import { AsignaturaRemoveComponent } from './component/routed/asignatura/asignatura-remove/asignatura-remove.component';
 import { AsignaturaEditComponent } from './component/routed/asignatura/asignatura-edit/asignatura-edit.component';
+import { GeneradorComponent } from './component/routed/generador/generador.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent},
+  { path: 'generador', component: GeneradorComponent },
   { path: 'profesores', component: ProfesoresPlistComponent },
   { path: 'profesor/new', component: ProfesorNewComponent },
   { path: 'profesor/:id/view', component: ProfesorViewComponent },

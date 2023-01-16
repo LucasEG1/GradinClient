@@ -3,7 +3,9 @@ import { Pageable, Sort } from './shared-interface';
 export interface IEntity {
     id: number;
 }
-
+export interface IEntity2Send {
+    id: IEntity;
+}
 export interface IPage<T> {
     content: T[];
     pageable: Pageable;

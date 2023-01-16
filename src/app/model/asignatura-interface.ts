@@ -22,7 +22,8 @@ export interface IAsignatura2Send {
     isbnLibro: string;
 }
 
-export interface IAsignatura2Edit extends IEntity {
+export interface IAsignatura2Edit {
+    id: number;
     nombre: string;
     profesor: IEntity;
     isbnLibro: string;

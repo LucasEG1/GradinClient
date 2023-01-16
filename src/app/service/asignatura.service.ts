@@ -46,6 +46,10 @@ export class AsignaturaService {
     return this.oHttpClient.get<IAsignatura>(this.url + "/" + id, httpOptions);
   }
 
+  count(): Observable<number> {
+    return this.oHttpClient.get<number>(this.url + "/count", httpOptions);
+  }
+
   delete(id: number): Observable<number> {
     return this.oHttpClient.delete<number>(this.url + "/" + id, httpOptions);
   }

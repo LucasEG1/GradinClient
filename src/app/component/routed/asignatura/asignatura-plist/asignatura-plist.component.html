@@ -15,10 +15,22 @@
     <table class="table table-striped text-center">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Profesor</th>
-                <th scope="col">ISBN del libro</th>
+                <th scope="col" (click)="setOrder('id')">#
+                    <span *ngIf="sortField=='id' && sortDirection=='asc'">🔼</span>
+                    <span *ngIf="sortField=='id' && sortDirection=='desc'">🔽</span>
+                </th>
+                <th scope="col" (click)="setOrder('nombre')">Nombre
+                    <span *ngIf="sortField=='nombre' && sortDirection=='asc'">🔼</span>
+                    <span *ngIf="sortField=='nombre' && sortDirection=='desc'">🔽</span>
+                </th>
+                <th scope="col" (click)="setOrder('profesor')">Profesor
+                    <span *ngIf="sortField=='profesor' && sortDirection=='asc'">🔼</span>
+                    <span *ngIf="sortField=='profesor' && sortDirection=='desc'">🔽</span>
+                </th>
+                <th scope="col" (click)="setOrder('isbnLibro')">ISBN del libro
+                    <span *ngIf="sortField=='isbnLibro' && sortDirection=='asc'">🔼</span>
+                    <span *ngIf="sortField=='isbnLibro' && sortDirection=='desc'">🔽</span>
+                </th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -26,7 +38,8 @@
             <tr *ngFor="let asignatura of responseFromServer.content">
                 <td>{{asignatura.id}}</td>
                 <td>{{asignatura.nombre}}</td>
-                <td>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido1}} {{asignatura.profesor.apellido2}}</td>
+                <td>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido1}} {{asignatura.profesor.apellido2}}
+                </td>
                 <td>{{asignatura.isbnLibro}}</td>
                 <td>
                     <div class="btn-group">

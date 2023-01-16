@@ -25,6 +25,10 @@ export class ProfesorService {
     return this.oHttpClient.put<number>(this.url, oProfesor, httpOptions);
   }
 
+  count(): Observable<number> {
+    return this.oHttpClient.get<number>(this.url + "/count", httpOptions);
+  }
+
   listarProfesores(page: number, size: number, termino: string, strSortField: string, strOrderDirection: string): Observable<IPage<IProfesor>> {
     let params = new HttpParams()
       .set("filter", termino)
@@ -44,6 +48,10 @@ export class ProfesorService {
 
   getOne(id: number): Observable<IProfesor> {
     return this.oHttpClient.get<IProfesor>(this.url + "/" + id, httpOptions);
+  }
+
+  generate(cantidad: number): Observable<number> {
+    return this.oHttpClient.post<number>(this.url + "/generate/" + cantidad, httpOptions);
   }
 
   delete(id: number): Observable<number> {
