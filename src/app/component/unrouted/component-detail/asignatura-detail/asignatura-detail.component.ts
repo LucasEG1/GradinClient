@@ -23,7 +23,6 @@ export class AsignaturaDetailComponent implements OnInit {
     this.oAsignaturaService.getOne(this.id).subscribe({
       next: (data: IAsignatura) => {
         this.asignatura = data;
-        console.log(data);
       }
     })
   }

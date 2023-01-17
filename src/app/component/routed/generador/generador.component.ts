@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IProfesor } from 'src/app/model/profesor-interface';
 import { AsignaturaService } from 'src/app/service/asignatura.service';
 import { ProfesorService } from 'src/app/service/profesor.service';
 import { SessionService } from 'src/app/service/session.service';
@@ -45,7 +46,7 @@ export class GeneradorComponent implements OnInit {
 
   generarProfesores(cantidad: number) {
     this.oProfesorService.generate(cantidad).subscribe({
-      next: (data: number) => {
+      next: (data: IProfesor[]) => {
         console.log(data);
         
         //this.reloadData();

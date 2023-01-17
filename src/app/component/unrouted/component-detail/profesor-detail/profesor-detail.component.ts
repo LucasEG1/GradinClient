@@ -26,7 +26,6 @@ export class ProfesorDetailComponent implements OnInit {
     this.oProfesorService.getOne(this.id).subscribe({
       next: (data: IProfesor) => {
         this.profesor = data;
-        console.log(data);
       }
     })
   }

@@ -50,8 +50,8 @@ export class ProfesorService {
     return this.oHttpClient.get<IProfesor>(this.url + "/" + id, httpOptions);
   }
 
-  generate(cantidad: number): Observable<number> {
-    return this.oHttpClient.post<number>(this.url + "/generate/" + cantidad, httpOptions);
+  generate(cantidad: number): Observable<IProfesor[]> {
+    return this.oHttpClient.post<IProfesor[]>(this.url + "/generate/" + cantidad, httpOptions);
   }
 
   delete(id: number): Observable<number> {

@@ -85,13 +85,14 @@ export class AsignaturaEditComponent implements OnInit {
     this.oAsignatura = {
       id: this.oForm.value.id as number,
       nombre: this.oForm.value.nombre as string,
-      profesor: {id: this.oForm.value.profesor as IProfesor},
+      profesor: {id: this.oProfesor.id as number},
       isbnLibro: this.oForm.value.isbnLibro as string
     }
+    
     if (this.oForm.valid) {
       this.oAsignaturaService.update(this.oAsignatura).subscribe({
-        next: (data: number) => {
-          this.showModal(data);
+        next: (data: IAsignatura) => {
+          this.showModal(data.id);
         },
         error: (error: any) => {
           console.log(error);
@@ -101,10 +102,10 @@ export class AsignaturaEditComponent implements OnInit {
   }
 
   showModal(data: number): void {
-    const modalAvisoCreacion = new bootstrap.Modal(document.getElementById(this.idModal), {
+    const modalAvisoEdicion = new bootstrap.Modal(document.getElementById(this.idModal), {
       keyboard: false
     });
-    modalAvisoCreacion.show();
+    modalAvisoEdicion.show();
     this.oRouter.navigate(['/asignatura', data, 'view'])
   }
 

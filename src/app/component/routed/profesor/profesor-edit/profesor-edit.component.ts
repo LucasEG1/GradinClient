@@ -63,7 +63,6 @@ export class ProfesorEditComponent implements OnInit {
     this.oProfesorService.getOne(this.id).subscribe({
       next: (data: IProfesor) => {
         this.oProfesor = data;
-        console.log(data);
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id],
           dni: [data.dni, [Validators.required, Validators.minLength(this.lengthDni), Validators.maxLength(this.lengthDni), Validators.pattern('([a-z]|[A-Z]|[0-9])[0-9]{7}([a-z]|[A-Z])')]],

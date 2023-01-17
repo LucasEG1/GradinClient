@@ -21,8 +21,8 @@ export class AsignaturaService {
     return this.oHttpClient.post<number>(this.url, oAsignatura, httpOptions);
   }
 
-  update(oAsignatura: IAsignatura2Edit): Observable<number> {
-    return this.oHttpClient.put<number>(this.url, oAsignatura, httpOptions);
+  update(oAsignatura: IAsignatura2Edit): Observable<IAsignatura> {
+    return this.oHttpClient.put<IAsignatura>(this.url, oAsignatura, httpOptions);
   }
 
   listarAsignaturas(page: number, size: number, termino: string, strSortField: string, strOrderDirection: string): Observable<IPage<IAsignatura>> {
